@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Webpack/Babel-demo</title>
+</head>
+
+<body>
+  <!--
+    This div is added to remove the flicker that comes from bootstrap being loaded
+    first in index.js
+    REMEMBER to set display to "block" in index.js, otherwise you will not see anything
+  -->
+  <div id="all-content" style="display: none;">
+    <ul id="menu" class="header">
+      <li><a href="" id="about">About</a></li>
+      <li><a href="" id="ex1">Person</a></li>
+      <li><a href="" id="ex2">Hobbies</a></li>
+      <li><a href="" id="ex3">Addresses</a></li>
+    </ul>
+
+    <div class="content">
+
+      <!-- This is were you should place your basic HTML for exercise-1 -->
+      <div id="person_html" style="display:none;">
+        <h3>Person</h3>
+        <p>List of all persons</p>
+      <table id="persons" class="table table-stiped">
+        <thead>
+        <tr>
+          <th>Id</th>
+          <th>First name</th>
+          <th>Last name</th>
+          <th>Phone</th>
+          <th>Street</th>
+          <th>Zip</th>
+          <th>City</th>
+          <th>Hobby</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody id="tablerows">
+      </tbody>
+      </table>
+
+      
+
+      <div id="editmodal" class="modal" tabindex="-1">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Edit Person</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <p>pleace edit person and press update</p>
+              
+              <div class="form-group">
+              <label for="id">Id</label>
+              <input id="edit_id" name="id" type="text" class="form-control"/>
+            </div>
+            <div class="form-group">
+              <label for="fName">fName</label>
+              <input id="fName" name="fName" type="text" class="form-control"/>
+            </div>
+            <div class="form-group">
+              <label for="lName">lName</label>
+              <input id="lName" name="lName" type="text" class="form-control"/>
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone</label>
+              <input id="phone" name="phone" type="text" class="form-control"/>
+            </div>
+            <div class="form-group">
+              <label for="street">Street</label>
+              <input id="street" name="street" type="text" class="form-control"/>
+            </div>
+            <div class="form-group">
+              <label for="zip">Zip</label>
+              <input id="zip" name="zip" type="text" class="form-control"/>
+            </div>
+            <div class="form-group">
+              <label for="city">City</label>
+              <input id="city" name="city" type="text" class="form-control"/>
+            </div>
+            <div class="form-group">
+              <label for="hobby">Hobby</label>
+              <input id="hobby" name="hobby" type="text" class="form-control"/>
+            </div>
+
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button id="modal-edit-save-btn" type="button" class="btn btn-primary">update</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      </div>
+      <!-- End of HTML for Person -->
+
+
+
+      <!-- This is were you should place your basic HTML for exercise-2 -->
+      <div id="ex2_html" style="display:none;">
+        <h3>Exercise 2</h3>
+        <p id="ex2p">Add your basic HTML for Exercise 2 here</p>
+      </div>
+      <!-- End of HTML for exercise-2 -->
+
+
+      <!-- This is were you should place your basic HTML for exercise-3 -->
+      <div id="ex3_html" style="display:none;">
+        <h3>Ex-3</h3>
+        <p>Add your basic HTML for Exercise 3 here</p>
+
+        <div class="row" style="min-height: 5em;"">
+      <div class=" col-md-8 pre-scrollable" style="background-color: lightgrey;">
+          <h5>All Users</h5>
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Id</th>
+                <th>Age</th>
+                <th>Name
+                <th>
+                <th>Gender</th>
+                <th>Email </th>
+            </thead>
+            <tbody id="allUserRows">
+            <tbody>
+          </table>
+        </div>
+        <div class="col-md-4" style="background-color: powderblue;">
+          <h5>Find User</h5>
+        </div>
+      </div>
+      <div class="row" style="min-height: 5em;">
+        <div class="col-md-4" style="background-color: powderblue;">
+          <h5>Add User</h5>
+        </div>
+        <div class="col-md-4" style="background-color: lightgrey;">
+          <h5>Edit User</h5>
+        </div>
+        <div class="col-md-4" style="background-color: powderblue;">
+          <h5>Delete User</h5>
+        </div>
+      </div>
+      <!-- </div> -->
+      <!-- End of HTML for exercise-3 -->
+
+      <!---- HTML for the About page -->
+
+    </div>
+
+    <div id="about_html" style="display:none;">
+      <h3>About</h3>
+      <p>Watch the small video given as intro to this code, BEFORE you start using it</p>
+    </div>
+    <!-- End of HTML for ABOUT Page -->
+
+
+    <!--End of all content -->
+  </div>
+
+  <!-- #################################################################-->
+  <!-- IMPORTANT  DO NOT IMPORT ANY JavaScript in this file by YOURSELF -->
+  <!-- #################################################################-->
+
+</body>
+
+</html>
