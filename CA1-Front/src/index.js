@@ -12,12 +12,15 @@ document.getElementById("all-content").style.display = "block";
 
 /* JS For Person below */
 
+/* HER STARTER PUT/DELETE PERSON */
+
 let editModalElement = document.getElementById("editmodal");
 let editMoadl = new bootstrap.Modal(editModalElement);
 
 document.getElementById("tablerows").addEventListener("click", (e) => {
   e.preventDefault();
   const node = e.target;
+  console.log(node);
   const name = node.getAttribute("name");
   const id = node.getAttribute("id");
   switch (name) {
@@ -26,9 +29,6 @@ document.getElementById("tablerows").addEventListener("click", (e) => {
       break;
     case "delete":
       deletePerson(id);
-      break;
-    case "getsingle person":
-      getSinglePerson(id);
       break;
   }
 });
@@ -40,15 +40,18 @@ function editPerson(id) {
       document.getElementById("edit_id").value = data.dto_id;
       document.getElementById("fName").value = data.dto_fName;
       document.getElementById("lName").value = data.dto_lName;
-      document.getElementById("phone").value = data.dto_phones.map(
-        (el) => el.dto_number
-      );
+      document.getElementById("email").value = data.dto_email;
+      document.getElementById("phone").value = data.dto_phones
+        .map((el) => el.dto_number)
+        .join("");
       document.getElementById("street").value = data.dto_street;
       document.getElementById("zip").value = data.dto_zipCode;
       document.getElementById("city").value = data.dto_city;
-      document.getElementById("hobby").value = data.dto_hobbies.map(
-        (el) => el.dto_name
-      );
+      document.getElementById("hobby").value = data.dto_hobbies
+        .map((el) => el.dto_name)
+        .join("");
+      console.log("Kig her" + data);
+      document.getElementById("address_id").value = data.dto_address_id;
       editMoadl.toggle();
     })
     .catch((err) => {
@@ -66,21 +69,26 @@ document
 
 function updatePerson() {
   const id = document.getElementById("edit_id").value;
-  // const nummer = document.getElementById("phoen")
-
+  console.log(document.getElementById("fName").value);
 
   const personObject = {
     dto_id: id,
     dto_fName: document.getElementById("fName").value,
     dto_lName: document.getElementById("lName").value,
-    dto_phones: [document.getElementById("phone").value],
+    dto_email: document.getElementById("email").value,
+    dto_phones: [
+      { dto_number: document.getElementById("phone").value, dto_person: id },
+    ],
     dto_street: document.getElementById("street").value,
     dto_zipCode: document.getElementById("zip").value,
     dto_city: document.getElementById("city").value,
-    dto_hobbies: [document.getElementById("hobby").value],
+    dto_hobbies: [
+      {
+        dto_name: document.getElementById("hobby").value,
+      },
+    ],
   };
 
-  console.log(personObject); //her
   const options = makeOptions("PUT", personObject);
 
   fetch(`${SERVER_URL}person/${id}`, options)
@@ -99,8 +107,129 @@ function updatePerson() {
 }
 
 function deletePerson(id) {
-  alert("delete person: " + id);
+  const deleteperson = makeOptions("DELETE");
+  fetch(`${SERVER_URL}/person/` + id, deleteperson)
+    .then(handleHttpErrors)
+    .then((removed) => {
+      getAllPersons();
+    })
+    .catch((err) => {
+      if (err.status) {
+        err.fullError.then((e) => console.log(e.message));
+      } else {
+        console.log("Network error");
+      }
+    });
 }
+
+/* HER SLUTTER PUT/DELETE PERSON */
+
+/* HER STARTER GETSINGLEPERSON */
+
+let getSinglePersonModalElement = document.getElementById("singlePersonmodal");
+let singlePersonMoadl = new bootstrap.Modal(getSinglePersonModalElement);
+
+document.getElementById("singleIdBtn").addEventListener("click", (e) => {
+  e.preventDefault();
+  const node = e.target;
+  const name = node.getAttribute("name");
+  const id = document.getElementById("singel_id").value;
+  switch (name) {
+    case "getSinglePerson":
+      getSinglePerson(id);
+      document.getElementById("singel_id").value = null;
+      break;
+  }
+});
+
+function getSinglePerson(id) {
+  fetch(`${SERVER_URL}/person/` + id)
+    .then(handleHttpErrors)
+    .then((data) => {
+      document.getElementById("sedit_id").value = data.dto_id;
+      document.getElementById("sfName").value = data.dto_fName;
+      document.getElementById("slName").value = data.dto_lName;
+      document.getElementById("semail").value = data.dto_email;
+      document.getElementById("sphone").value = data.dto_phones
+        .map((el) => el.dto_number)
+        .join("");
+      document.getElementById("sstreet").value = data.dto_street;
+      document.getElementById("szip").value = data.dto_zipCode;
+      document.getElementById("scity").value = data.dto_city;
+      document.getElementById("shobby").value = data.dto_hobbies
+        .map((el) => el.dto_name)
+        .join("");
+      document.getElementById("saddress_id").value = data.dto_address_id;
+      singlePersonMoadl.toggle();
+    })
+    .catch((err) => {
+      if (err.status) {
+        err.fullError.then((e) => console.log(e.message));
+      } else {
+        console.log("Network error");
+      }
+    });
+}
+
+/* HER SLUTTER GETSINGLEPERSON */
+
+/* HER STARTER POST PERSON */
+
+let postModalElement = document.getElementById("postmodal");
+let postMoadl = new bootstrap.Modal(postModalElement);
+
+document.getElementById("POSTPersonBtn").addEventListener("click", (e) => {
+  e.preventDefault();
+  (document.getElementById("pfName").value = ""),
+    (document.getElementById("plName").value = ""),
+    (document.getElementById("pemail").value = ""),
+    (document.getElementById("pphone").value = ""),
+    (document.getElementById("pstreet").value = ""),
+    (document.getElementById("pzip").value = ""),
+    (document.getElementById("pcity").value = ""),
+    (document.getElementById("phobby").value = ""),
+    postMoadl.toggle();
+});
+
+document
+  .getElementById("modal-create-btn")
+  .addEventListener("click", postNewPerson);
+
+function postNewPerson() {
+  let personObjectPost = {
+    dto_fName: document.getElementById("pfName").value,
+    dto_lName: document.getElementById("plName").value,
+    dto_email: document.getElementById("pemail").value,
+    dto_phones: [{ dto_number: document.getElementById("pphone").value }],
+    dto_street: document.getElementById("pstreet").value,
+    dto_zipCode: document.getElementById("pzip").value,
+    dto_city: document.getElementById("pcity").value,
+    dto_hobbies: [
+      {
+        dto_name: document.getElementById("phobby").value,
+      },
+    ],
+  };
+
+  const postPerson = makeOptions("POST", personObjectPost);
+  fetch(`${SERVER_URL}person/`, postPerson)
+    .then(handleHttpErrors)
+    .then((data) => {
+      postMoadl.toggle();
+      getAllPersons();
+    })
+    .catch((err) => {
+      if (err.status) {
+        err.fullError.then((e) => console.log(e.message));
+      } else {
+        console.log("Network error");
+      }
+    });
+}
+
+/* HER SLUTTER POST PERSON */
+
+/* HER STARTER GETALLPERSONS */
 
 function getAllPersons() {
   fetch(`${SERVER_URL}/person/all`)
@@ -134,6 +263,8 @@ function getPersonTableRow(p) {
   </td>
   </tr>`;
 }
+
+/* HER SLUTTER GETALLPERSONS */
 
 /* JS For Exercise-2 below */
 
@@ -178,7 +309,7 @@ function hideAllShowOne(idToShow) {
 function menuItemClicked(evt) {
   const id = evt.target.id;
   switch (id) {
-    case "ex1":
+    case "person":
       hideAllShowOne("person_html");
       getAllPersons();
       break;

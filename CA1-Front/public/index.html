@@ -16,15 +16,15 @@
   <div id="all-content" style="display: none;">
     <ul id="menu" class="header">
       <li><a href="" id="about">About</a></li>
-      <li><a href="" id="ex1">Person</a></li>
+      <li><a href="" id="person">Person</a></li>
       <li><a href="" id="ex2">Hobbies</a></li>
       <li><a href="" id="ex3">Addresses</a></li>
     </ul>
 
     <div class="content">
 
-      <!-- This is were you should place your basic HTML for exercise-1 -->
-      <div id="person_html" style="display:none;">
+      <!-- This is the get all persons -->
+        <div id="person_html" style="display:none;">
         <h3>Person</h3>
         <p>List of all persons</p>
       <table id="persons" class="table table-stiped">
@@ -44,9 +44,133 @@
       <tbody id="tablerows">
       </tbody>
       </table>
+<!-- This is the end of get all persons -->
 
-      
 
+
+ <!-- This is the get single person Modal -->
+      <label for="singel_id">Tast et p_id</label><br>
+      <input id="singel_id" type="text"  name="singlePerson" value="">
+      <input id="singleIdBtn" type="submit" name="getSinglePerson" value="Get Person">
+
+      <div id="singlePersonmodal" class="modal" tabindex="-1">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Person By ID</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <p>Her is the person you wher looking for!</p>
+              
+              <div class="form-group">
+              <label for="id">Id</label>
+              <input id="sedit_id" name="id" type="text" class="form-control"/>
+            </div>
+            <div class="form-group">
+              <label for="fName">fName</label>
+              <input id="sfName" name="fName" type="text" class="form-control"/>
+            </div>
+            <div class="form-group">
+              <label for="lName">lName</label>
+              <input id="slName" name="lName" type="text" class="form-control"/>
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input id="semail" name="email" type="text" class="form-control"/>
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone</label>
+              <input id="sphone" name="phone" type="text" class="form-control"/>
+            </div>
+            <div class="form-group">
+              <label for="street">Street</label>
+              <input id="sstreet" name="street" type="text" class="form-control"/>
+            </div>
+            <div class="form-group">
+              <label for="zip">Zip</label>
+              <input id="szip" name="zip" type="text" class="form-control"/>
+            </div>
+            <div class="form-group">
+              <label for="city">City</label>
+              <input id="scity" name="city" type="text" class="form-control"/>
+            </div>
+            <div class="form-group">
+              <label for="hobby">Hobby</label>
+              <input id="shobby" name="hobby" type="text" class="form-control"/>
+            </div>
+            <div class="form-group">
+              <label for="address"></label>
+              <input id="saddress_id" name="address" type="hidden" class="form-control"/>
+            </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+<!-- This is the end of get single person Modal -->
+    
+<!-- This is the POST person Modal -->
+
+<input id="POSTPersonBtn" type="submit" name="createNewPerson" value="Create Person">
+
+<div id="postmodal" class="modal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Person By ID</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Create New Person!</p>
+        
+     
+      <div class="form-group">
+        <label for="fName">fName</label>
+        <input id="pfName" name="fName" type="text" class="form-control"/>
+      </div>
+      <div class="form-group">
+        <label for="lName">lName</label>
+        <input id="plName" name="lName" type="text" class="form-control"/>
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input id="pemail" name="email" type="text" class="form-control"/>
+      </div>
+      <div class="form-group">
+        <label for="phone">Phone</label>
+        <input id="pphone" name="phone" type="text" class="form-control"/>
+      </div>
+      <div class="form-group">
+        <label for="street">Street</label>
+        <input id="pstreet" name="street" type="text" class="form-control"/>
+      </div>
+      <div class="form-group">
+        <label for="zip">Zip</label>
+        <input id="pzip" name="zip" type="text" class="form-control"/>
+      </div>
+      <div class="form-group">
+        <label for="city">City</label>
+        <input id="pcity" name="city" type="text" class="form-control"/>
+      </div>
+      <div class="form-group">
+        <label for="hobby">Hobby</label>
+        <input id="phobby" name="hobby" type="text" class="form-control"/>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      <button id="modal-create-btn" type="button" class="btn btn-primary">Create</button>
+    </div>
+  </div>
+</div>
+</div>
+<!-- This is the end of POST person Modal -->
+
+
+<!-- This is the edit person Modal -->
       <div id="editmodal" class="modal" tabindex="-1">
         <div class="modal-dialog">
           <div class="modal-content">
@@ -70,6 +194,10 @@
               <input id="lName" name="lName" type="text" class="form-control"/>
             </div>
             <div class="form-group">
+              <label for="email">Email</label>
+              <input id="email" name="email" type="text" class="form-control"/>
+            </div>
+            <div class="form-group">
               <label for="phone">Phone</label>
               <input id="phone" name="phone" type="text" class="form-control"/>
             </div>
@@ -89,8 +217,10 @@
               <label for="hobby">Hobby</label>
               <input id="hobby" name="hobby" type="text" class="form-control"/>
             </div>
-
-
+            <div class="form-group">
+              <label for="address"></label>
+              <input id="address_id" name="address" type="hidden" class="form-control"/>
+            </div>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -99,8 +229,10 @@
           </div>
         </div>
       </div>
+<!-- This is the end of edit person Modal -->
+      
 
-      </div>
+</div>
       <!-- End of HTML for Person -->
 
 
