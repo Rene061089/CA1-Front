@@ -12,6 +12,8 @@ document.getElementById("all-content").style.display = "block";
 
 /* JS For Person below */
 
+
+
 /* HER STARTER PUT/DELETE PERSON */
 
 let editModalElement = document.getElementById("editmodal");
