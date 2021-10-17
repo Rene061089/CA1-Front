@@ -2,7 +2,7 @@ import "./style.css";
 import "bootstrap/dist/css/bootstrap.css";
 import * as bootstrap from "bootstrap";
 import "@popperjs/core";
-import { SERVER_URL } from "./constants";
+import { l, p, password, s, SERVER_URL } from "./constants";
 
 document.getElementById("all-content").style.display = "block";
 
@@ -108,18 +108,22 @@ function updatePerson() {
 
 function deletePerson(id) {
   const deleteperson = makeOptions("DELETE");
-  fetch(`${SERVER_URL}/person/` + id, deleteperson)
-    .then(handleHttpErrors)
-    .then((removed) => {
-      getAllPersons();
-    })
-    .catch((err) => {
-      if (err.status) {
-        err.fullError.then((e) => console.log(e.message));
-      } else {
-        console.log("Network error");
-      }
-    });
+
+  if (document.getElementById("psw").value === password + l + p + s) {
+    fetch(`${SERVER_URL}/person/` + id, deleteperson)
+      .then(handleHttpErrors)
+      .then((removed) => {
+        getAllPersons();
+      })
+
+      .catch((err) => {
+        if (err.status) {
+          err.fullError.then((e) => console.log(e.message));
+        } else {
+          console.log("Network error");
+        }
+      });
+  }
 }
 
 /* HER SLUTTER PUT/DELETE PERSON */
@@ -258,15 +262,48 @@ function getPersonTableRow(p) {
   <td>${p.dto_city}</td>
   <td>${p.dto_hobbies.map((el) => el.dto_name).join("")}</td>
   <td> 
-  <input id="${p.dto_id}" type="button" name="edit" value="edit"/>
-  <input id="${p.dto_id}" type="button" name="delete" value="delete"/>
+  <input id="${
+    p.dto_id
+  }" type="button" name="edit" value="edit" style="background-color: blue; color: white;" />
+  <input id="${
+    p.dto_id
+  }" type="button" name="delete" value="delete" style="background-color: red; color: white;"/>
+  
+  <input type="password" id="psw" name="psw" pattern="(?=.*\d.{4,})" required>
+  <label for="psw">Password for delete</label>
   </td>
   </tr>`;
 }
 
 /* HER SLUTTER GETALLPERSONS */
 
-/* JS For Exercise-2 below */
+/* JS For Hobbies below */
+
+function getAllHobbies() {
+  fetch(`${SERVER_URL}/hobby/all`)
+    .then(handleHttpErrors)
+    .then((data) => {
+      const allHobbyRows = data.all.map((h) => getHobbiesTableRow(h));
+      document.getElementById("hobbytablerows").innerHTML =
+        allHobbyRows.join("");
+    })
+    .catch((err) => {
+      if (err.status) {
+        err.fullError.then((e) => console.log(e.message));
+      } else {
+        console.log("Network error");
+      }
+    });
+}
+
+function getHobbiesTableRow(h) {
+  return `<tr>
+<td>${h.dto_name}</td>
+<td>${h.dto_category}</td>
+<td>${h.dto_type}</td>
+<td>${h.dto_wikiLink}</td>
+</tr>`;
+}
 
 /* JS For Exercise-3 below */
 
@@ -301,7 +338,7 @@ the Period2-week2-day3 Exercises
 function hideAllShowOne(idToShow) {
   document.getElementById("about_html").style = "display:none";
   document.getElementById("person_html").style = "display:none";
-  document.getElementById("ex2_html").style = "display:none";
+  document.getElementById("hobbies_html").style = "display:none";
   document.getElementById("ex3_html").style = "display:none";
   document.getElementById(idToShow).style = "display:block";
 }
@@ -313,8 +350,9 @@ function menuItemClicked(evt) {
       hideAllShowOne("person_html");
       getAllPersons();
       break;
-    case "ex2":
-      hideAllShowOne("ex2_html");
+    case "hobbies":
+      hideAllShowOne("hobbies_html");
+      getAllHobbies();
       break;
     case "ex3":
       hideAllShowOne("ex3_html");

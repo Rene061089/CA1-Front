@@ -17,19 +17,22 @@
     <ul id="menu" class="header">
       <li><a href="" id="about">About</a></li>
       <li><a href="" id="person">Person</a></li>
-      <li><a href="" id="ex2">Hobbies</a></li>
+      <li><a href="" id="hobbies">Hobbies</a></li>
       <li><a href="" id="ex3">Addresses</a></li>
     </ul>
 
+
+    
     <div class="content">
 
       <!-- This is the get all persons -->
         <div id="person_html" style="display:none;">
         <h3>Person</h3>
         <p>List of all persons</p>
-      <table id="persons" class="table table-stiped">
+        <div class="table-wrap">
+        <table id="persons" class="table table-striped table-dark">
         <thead>
-        <tr>
+        <tr style="color: blueviolet;">
           <th>Id</th>
           <th>First name</th>
           <th>Last name</th>
@@ -44,18 +47,20 @@
       <tbody id="tablerows">
       </tbody>
       </table>
+      <img src="/src/images/data.jpg" alt="test" >
+    </div>
 <!-- This is the end of get all persons -->
 
 
 
  <!-- This is the get single person Modal -->
-      <label for="singel_id">Tast et p_id</label><br>
+      <label for="singel_id"><h5>Tast et id</h5></label><br>
       <input id="singel_id" type="text"  name="singlePerson" value="">
-      <input id="singleIdBtn" type="submit" name="getSinglePerson" value="Get Person">
+      <input style="background-color: rgb(12, 199, 12)" id="singleIdBtn" type="submit" name="getSinglePerson" value="Get Person">
 
       <div id="singlePersonmodal" class="modal" tabindex="-1">
-        <div class="modal-dialog">
-          <div class="modal-content">
+        <div class="modal-dialog" >
+          <div class="modal-content" style="background-color: darkred; color: aliceblue;"> 
             <div class="modal-header">
               <h5 class="modal-title">Person By ID</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -111,10 +116,12 @@
         </div>
       </div>
 <!-- This is the end of get single person Modal -->
-    
+
 <!-- This is the POST person Modal -->
 
-<input id="POSTPersonBtn" type="submit" name="createNewPerson" value="Create Person">
+<input id="POSTPersonBtn" type="submit" name="createNewPerson" value="Create Person" style="background-color: rgb(12, 199, 12);">
+
+
 
 <div id="postmodal" class="modal" tabindex="-1">
   <div class="modal-dialog">
@@ -161,8 +168,8 @@
       </div>
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-      <button id="modal-create-btn" type="button" class="btn btn-primary">Create</button>
+      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="background-color: red">Close</button>
+      <button id="modal-create-btn" type="button" class="btn btn-primary" style="background-color: green;">Create</button>
     </div>
   </div>
 </div>
@@ -173,7 +180,7 @@
 <!-- This is the edit person Modal -->
       <div id="editmodal" class="modal" tabindex="-1">
         <div class="modal-dialog">
-          <div class="modal-content">
+          <div class="modal-content" style="background-color: salmon;">
             <div class="modal-header">
               <h5 class="modal-title">Edit Person</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -223,26 +230,50 @@
             </div>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button id="modal-edit-save-btn" type="button" class="btn btn-primary">update</button>
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="background-color: red">Close</button>
+              <button id="modal-edit-save-btn" type="button" class="btn btn-primary" style="background-color: rebeccapurple">update</button>
             </div>
           </div>
         </div>
       </div>
+
+   
+
+    </div>
 <!-- This is the end of edit person Modal -->
       
 
+
+
+
+
+<!-- End of HTML for Person -->
+
+
+
+     <!-- This is the get all Hobbies -->
+      <div class="hobbiescolor" id="hobbies_html" style="display:none;">
+        <h3>Hobbies</h3>
+        <p id="hobbies">List of all Hobbies</p>
+      
+
+  <table id="hobbies" class="table table-striped">
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th>Category</th>
+      <th>Type</th>
+      <th>Wikilink</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody id="hobbytablerows">
+  </tbody>
+  </table>
+
 </div>
-      <!-- End of HTML for Person -->
+<!-- This is the end of get all Hobbies -->
 
-
-
-      <!-- This is were you should place your basic HTML for exercise-2 -->
-      <div id="ex2_html" style="display:none;">
-        <h3>Exercise 2</h3>
-        <p id="ex2p">Add your basic HTML for Exercise 2 here</p>
-      </div>
-      <!-- End of HTML for exercise-2 -->
 
 
       <!-- This is were you should place your basic HTML for exercise-3 -->
